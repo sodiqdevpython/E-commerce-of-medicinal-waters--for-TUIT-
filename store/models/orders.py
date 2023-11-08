@@ -14,8 +14,8 @@ class Order(models.Model):
     address = models.CharField (max_length=50, default='', blank=True, verbose_name="Manzil")
     phone = models.CharField (max_length=50, default='', blank=True, verbose_name="Telefon raqami")
     date = models.DateField (default=datetime.datetime.today, verbose_name="Buyurtma berilgan vaqt")
-    status = models.BooleanField (default=False,verbose_name="Holati")
-
+    status = models.BooleanField (default=False,verbose_name="Buyurtma topshirildimi")
+    delivery = models.BooleanField(default=False, verbose_name="Yetkazib berish ximati bormi")
     def placeOrder(self):
         self.save()
 

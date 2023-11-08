@@ -12,6 +12,7 @@ class CheckOut(View):
     def post(self, request):
         address = request.POST.get('address')
         phone = request.POST.get('phone')
+        delivery = request.POST.get('delivery')
         customer = request.session.get('customer')
         cart = request.session.get('cart')
         products = Products.get_products_by_id(list(cart.keys()))
@@ -22,6 +23,7 @@ class CheckOut(View):
                           price=product.price,
                           address=address,
                           phone=phone,
+                          delivery=delivery,
                           quantity=cart.get(str(product.id)))
             order.save()
         request.session['cart'] = {}

@@ -8,5 +8,5 @@ class Cordinate(models.Model):
         return f"{self.x}, {self.y}"
 
     class Meta:
-        verbose_name = "Yetkazib beruvchi kardinatasi"
-        verbose_name_plural = "Yetkazib beruvchi kardinatasi"
+        verbose_name = "Yetkazib beruvchi manzili"
+        verbose_name_plural = "Yetkazib beruvchi manzili"

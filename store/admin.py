@@ -26,6 +26,6 @@ class AdminViewCustomer(admin.ModelAdmin):
 @admin.register(Order)
 class AdminViewOrder(admin.ModelAdmin):
     search_fields = ['address','phone','customer']
-    list_display = ['customer','product','quantity','price','date','status']
+    list_display = ['customer','product','quantity','price','date','status','delivery']
 
     # ,'product','phone','email','quantity','price','phone','date'
