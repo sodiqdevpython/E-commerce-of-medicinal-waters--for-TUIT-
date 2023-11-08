@@ -28,7 +28,7 @@
                     <td>{{product.name}}</td>
                     <td>{{product.price|currency}}</td>
                     <td>{{product|cart_quantity:request.session.cart}}</td>
-                    <td>{{product|price_total:request.session.cart|currency}}</td>
+                    <td>{{product|price_total:request.session.cart|currency}} sum</td>
                 </tr>
 
                 {% endfor %}
@@ -135,7 +135,7 @@
                     <input type="hidden" name="delivery" value="False">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled>
                     <label style="color:red;" class="form-check-label" for="flexCheckDisabled">
-                      Yetkazib berilmaydi !
+                      Yetkazib berilmaydi !<br><br>
                     </label>
                   </div>
                     <input type="submit" class="btn float-right btn-outline-success col-lg-6" value="Tasdiqlash">
