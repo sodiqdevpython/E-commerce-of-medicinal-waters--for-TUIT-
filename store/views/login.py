@@ -27,9 +27,9 @@ class Login(View):
                     Login.return_url = None
                     return redirect ('homepage')
             else:
-                error_message = 'Xato !!'
+                error_message = "Email yoki parol noto'g'ri"
         else:
-            error_message = 'Xato !!'
+            error_message = "Email yoki parol noto'g'ri"
 
         return render (request, 'login.html', {'error': error_message})
 

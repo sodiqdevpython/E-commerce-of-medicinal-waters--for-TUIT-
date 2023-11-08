@@ -1,8 +1,13 @@
 from django.shortcuts import render , redirect , HttpResponseRedirect
+import requests
 from store.models.product import Products
 from store.models.category import Category
 from django.views import View
 
+#! Foydalanuvchining IP adresini olish uchun 
+
+
+# ! 
 
 # Create your views here.
 class Index(View):
@@ -51,6 +56,10 @@ def store(request):
     data = {}
     data['products'] = products
     data['categories'] = categories
+
+    #! User IP
+    #! 
+
 
     return render(request, 'index.html', data)
 

@@ -3,7 +3,9 @@ from .models.product import Products
 from .models.category import Category
 from .models.customer import Customer
 from .models.orders import Order
+from .models.cordinate import Cordinate
 
+admin.site.register(Cordinate)
 
 class AdminProduct(admin.ModelAdmin):
     list_display = ['name', 'price', 'category']

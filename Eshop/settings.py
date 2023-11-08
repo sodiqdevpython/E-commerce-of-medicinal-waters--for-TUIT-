@@ -64,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'store.context_proc.cor_x_y'
             ],
         },
     },
@@ -110,6 +111,7 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Tashkent'
 
+# GEOIP_PATH = r'C:\Users\sodiq\OneDrive\Ishchi stol\Eshop-main\store\GeoLite2-City'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
