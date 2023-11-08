@@ -24,7 +24,7 @@
                 {% for product in products %}
                 <tr>
                     <td>{{forloop.counter}}</td>
-                    <td><img style="height: 80px;" class="rounded-circle" src="{{product.image.url}}" alt=""></td>
+                    <td><img style="height: 80px;" class="" src="{{product.image.url}}" alt=""></td>
                     <td>{{product.name}}</td>
                     <td>{{product.price|currency}}</td>
                     <td>{{product|cart_quantity:request.session.cart}}</td>
@@ -46,6 +46,7 @@
         <hr>
         <div class="m-3 p-3">
             <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-success border rounded  col-lg-3 float-right">Yetkazib berish</a>
+            <a href="#" data-toggle="modal" data-target="#exampleModal2" class="btn btn-outline-success border rounded  col-lg-3 float-right">Olib ketish</a>
         </div>
    </div>
 </div>
@@ -89,6 +90,66 @@
     </div>
   </div>
 
+  <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+              Olib ketish <small>Yetkazib berish ximati ham mavjud</small>
+          </h5>
+          <hr>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="m-2 p-3">
+            <div>
+              <h5>Bog'ishamol ko'chasi 12-uy dan olib ketishingiz mumkin</h5>
+              <h5>Telefon: +998 99 032 78 98</h5>
+              <h5>Jami narxi: </h5>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3054.1983078681405!2d69.28148587596421!3d41.33738079909571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b5267ba5c95%3A0x8d5f1236002730a6!2sYunusabad%20District%2C%20Tashkent%2C%20Uzbekistan!5e1!3m2!1sen!2s!4v1699410809440!5m2!1sen!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
+  <script>
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      console.log("Iltimos google chrome brauzeridan kiring chunki sizning hozirgi manzilingizni topa olmadik");
+    }
+    
+    function showPosition(position) {
+      console.log("Latitude: " + position.coords.latitude + 
+      "\nLongitude: " + position.coords.longitude); 
+    
+      // Call the function with the current position
+      var distance = getDistanceFromLatLonInKm({{db1.x}}, {{db1.y}}, position.coords.latitude, position.coords.longitude);
+      console.log(distance * 50);
+    }
+    
+    function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+      var R = 6371; // Radius of the earth in km
+      var dLat = deg2rad(lat2-lat1);  // deg2rad below
+      var dLon = deg2rad(lon2-lon1); 
+      var a = 
+        Math.sin(dLat/2) * Math.sin(dLat/2) + 
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+        Math.sin(dLon/2) * Math.sin(dLon/2)
+        ; 
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      var d = R * c; // Distance in km
+      return d;
+    }
+    
+    function deg2rad(deg) {
+      return deg * (Math.PI/180)
+    }    
+  </script>
 
 {% endblock %}

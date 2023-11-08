@@ -15,8 +15,15 @@ class CategoryAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Products,AdminProduct)
 admin.site.register(Category)
-admin.site.register(Customer)
-admin.site.register(Order)
 
+@admin.register(Customer)
+class AdminViewCustomer(admin.ModelAdmin):
+    search_fields = ['first_name','last_name','phone']
+    list_display = ['first_name','last_name','phone','email']
+    
+@admin.register(Order)
+class AdminViewOrder(admin.ModelAdmin):
+    search_fields = ['address','phone','customer']
+    list_display = ['customer','product','quantity','price','date','status']
 
-# username = Tanushree, email = tanushree7252@gmail.com, password = 1234
+    # ,'product','phone','email','quantity','price','phone','date'
