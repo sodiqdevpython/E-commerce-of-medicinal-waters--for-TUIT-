@@ -5,8 +5,6 @@ from store.models.customer import Customer
 from django.views import  View
 from store.models.product import Products
 
-from django.contrib.gis.geoip2 import GeoIP2
-
 class Cart(View):
     def get(self , request):
         ids = list(request.session.get('cart').keys())

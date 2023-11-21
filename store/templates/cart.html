@@ -4,56 +4,62 @@
 {% block content %}
 {% load cart %}
 {% load custom_filter %}
-<div class="container">
-   <div class="border rounded p-4 m-4">
-        <a href="{% url 'store' %}" class="display-4 pl-4 ml-4 btn btn-success rounded-pill">Xaridda davom etish </a>
+<div class="container-fluid">
+   <div class="border rounded">
+        <a href="{% url 'store' %}" class="display-4 mt-3 pl-4 ml-4 btn btn-success rounded-pill">Xaridda davom etish </a>
         <hr>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Rasmi</th>
-                    <th>Nomi</th>
-                    <th>Narxi</th>
-                    <th>Miqdori</th>
-                    <th>Jami narxi</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class='table-responsive'>
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th>Rasmi</th>
+                      <th>Nomi</th>
+                      <th>Narxi</th>
+                      <th>Miqdori</th>
+                      <th>Jami narxi</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  
+                  {% for product in products %}
+                  <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td><img style="height: 80px;" class="" src="{{product.image.url}}" alt=""></td>
+                      <td>{{product.name}}</td>
+                      <td>{{product.price|currency}}</td>
+                      <td>{{product|cart_quantity:request.session.cart}}</td>
+                      <td>{{product|price_total:request.session.cart|currency}} sum</td>
+                  </tr>
+
+                  {% endfor %}
                 
-                {% for product in products %}
-                <tr>
-                    <td>{{forloop.counter}}</td>
-                    <td><img style="height: 80px;" class="" src="{{product.image.url}}" alt=""></td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.price|currency}}</td>
-                    <td>{{product|cart_quantity:request.session.cart}}</td>
-                    <td>{{product|price_total:request.session.cart|currency}} sum</td>
-                </tr>
+              </tbody>
 
-                {% endfor %}
-               
-            </tbody>
-
-            <tfoot>
-                <tr>
+              <tfoot>
+                  <tr>
+                      <th colspan="4"></th>
+                      <th class="" colspan="">Jami narxi</th>
+                      <th>{{products|total_cart_price:request.session.cart|currency}}</th>
+                  </tr>
+                  <tr>
                     <th colspan="4"></th>
-                    <th class="" colspan="">Jami narxi</th>
-                    <th>{{products|total_cart_price:request.session.cart|currency}}</th>
+                    <th class="" colspan="">Yetkazib berish uchun:</th>
+                    <th id="calculate_delivery">{{products|total_cart_price:request.session.cart}}+5000</th>
                 </tr>
-                <tr>
-                  <th colspan="4"></th>
-                  <th class="" colspan="">Yetkazib berish uchun:</th>
-                  <th id="calculate_delivery">{{products|total_cart_price:request.session.cart}}+5000</th>
-              </tr>
-            </tfoot>
-        </table>
-        <hr>
-        <div class="m-3 p-3">
-            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-success border rounded  col-lg-3 float-right">Yetkazib berish</a>
-            <a href="#" data-toggle="modal" data-target="#exampleModal2" class="btn btn-outline-success border rounded  col-lg-3 float-right">Olib ketish</a>
+              </tfoot>
+          </table>
         </div>
+        <hr>
    </div>
+   <div class="row py-3">
+    <div class='col-6'>
+      <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-success border rounded  col-lg-3 float-right">Yetkazib berish</a>
+    </div>
+    <div class='col-6'>
+      <a href="#" data-toggle="modal" data-target="#exampleModal2" class="btn btn-outline-success border rounded  col-lg-3 float-right">Olib ketish</a>
+    </div>
+</div>
 </div>
 
 
